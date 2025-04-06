@@ -23,7 +23,7 @@ export const MultipleChoice = ({questionId, question, answerList, handler} : Que
                             type="checkbox"
                             id={answer.text}
                             name="question"
-                            value={answer.id}
+                            value={answer.text}
                             className="mr-2"
                         />
                         <label htmlFor={answer.text}>{answer.text}</label>
