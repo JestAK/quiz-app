@@ -4,6 +4,7 @@ import {MultipleChoice} from "./Components/MultipleChoice";
 import {OpenEndedQuestion} from "./Components/OpenEndedQuestion";
 import test_data from "./test_data.json";
 import {FinalResult, Question} from "./types";
+import {fetchContent} from "./utils/contentfulAPI";
 
 const QuestionList = ({step, handler}: {step: number, handler: (questionId: string, answer: FormDataEntryValue[]) => void}) => {
     const questions = test_data.steps[step].questions;
@@ -12,11 +13,11 @@ const QuestionList = ({step, handler}: {step: number, handler: (questionId: stri
             {questions.map((question: Question) => {
                 switch (question.questionType) {
                     case "single_choice":
-                        return <SingleChoice key={question.id} questionId={question.id} question={question.questionText} answerList={question.answers} handler={handler}/>;
+                        return <SingleChoice key={((question.id).toString()).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={question.answers} handler={handler}/>;
                     case "multiple_choice":
-                        return <MultipleChoice key={question.id} questionId={question.id} question={question.questionText} answerList={question.answers} handler={handler}/>;
+                        return <MultipleChoice key={(question.id).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={question.answers} handler={handler}/>;
                     case "open_ended":
-                        return <OpenEndedQuestion key={question.id} questionId={question.id} question={question.questionText} answerList={[]} handler={handler}/>;
+                        return <OpenEndedQuestion key={(question.id).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={[]} handler={handler}/>;
                     default:
                         return null;
                 }
@@ -28,11 +29,20 @@ const QuestionList = ({step, handler}: {step: number, handler: (questionId: stri
 function App() {
     const [answers, setAnswers] = useState<FinalResult[]>([]);
     const [currentStep, setCurrentStep] = useState(0);
-    const contentData = test_data
+    const [contentData, setContentData] = useState(test_data);
 
     useEffect(() => {
         console.log(answers);
     }, [answers]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await fetchContent();
+            // setContentData(data);
+            console.log(data);
+        };
+        fetchData();
+    }, []);
 
     const handleAnswerChange = (questionId: string, answer: FormDataEntryValue[]) => {
         const newAnswers: FinalResult[] = [...answers];

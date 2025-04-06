@@ -8,10 +8,10 @@
           "questionText": "What is your favorite color?",
           "questionType": "single_choice",
           "answers": [
-            { "id": "1", "text": "Red" },
-            { "id": "2", "text": "Blue" },
-            { "id": "3", "text": "Green" },
-            { "id": "4", "text": "Yellow" }
+            { "id": 1, "text": "Red" },
+            { "id": 2, "text": "Blue" },
+            { "id": 3, "text": "Green" },
+            { "id": 4, "text": "Yellow" }
           ]
         },
         {

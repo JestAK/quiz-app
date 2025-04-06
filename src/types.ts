@@ -6,15 +6,24 @@ export interface QuestionProps {
 }
 
 export interface Answer {
-    id: string;
+    id: number|string;
     text: string;
 }
 
 export interface Question {
-    id: string;
+    id: number|string;
     questionText: string;
     questionType: string;
     answers: Answer[];
+}
+
+export interface Step {
+    id: string;
+    questions: Question[];
+}
+
+export interface ContentData {
+    steps: Step[];
 }
 
 export interface FinalResult {

@@ -11,11 +11,17 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
+    "cf-content-types-generator": "^2.15.5",
     "contentful": "^11.5.13",
+    "contentful-cli": "^3.8.3",
+    "crypto-browserify": "^3.12.1",
+    "os": "^0.1.2",
+    "os-browserify": "^0.3.0",
     "postcss": "^8.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
+    "stream-browserify": "^3.0.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -45,6 +51,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "tailwindcss": "^3.4.17"
+    "react-app-rewired": "^2.2.1",
+    "tailwindcss": "^3.4.17",
+    "webpack-cli": "^6.0.1"
   }
 }
