@@ -1,5 +1,4 @@
 import { createClient } from 'contentful';
-import { ContentData, Step } from "../types";
 
 const client = createClient({
     space: process.env.REACT_APP_CONTENTFUL_SPACE_ID!,
@@ -12,9 +11,6 @@ export const fetchContent = async () => {
             content_type: 'steps',
             include: 3,
         });
-        // console.log("Response from Contentful:", response);
-        //
-        // console.log("Items from Contentful:", response.items);
 
         const transformedData: any = response.items.map((item: any) => {
             const steps = item.fields.steps.map((step: any) => {
@@ -23,9 +19,19 @@ export const fetchContent = async () => {
 
             const result = steps.map((step: any) => {
                 return {
-                    id : step.id,
+                    id : step.id.toString(),
                     questions: step.questions.map((question: any) => {
-                        return question.fields
+                        return {
+                            id: question.fields.id.toString(),
+                            questionText: question.fields.questionText,
+                            questionType: question.fields.questionType,
+                            answers: (question.fields.answers ?? []).map((answer: any, index: number) => {
+                                return {
+                                    id: (index+1).toString(),
+                                    text: answer,
+                                }
+                            }),
+                        }
                     }),
                     questionOrder: step.questionOrder,
                 }

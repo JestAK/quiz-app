@@ -6,30 +6,30 @@ import test_data from "./test_data.json";
 import {FinalResult, Question} from "./types";
 import {fetchContent} from "./utils/contentfulAPI";
 
-const QuestionList = ({step, handler}: {step: number, handler: (questionId: string, answer: FormDataEntryValue[]) => void}) => {
-    const questions = test_data.steps[step].questions;
-    return (
-        <>
-            {questions.map((question: Question) => {
-                switch (question.questionType) {
-                    case "single_choice":
-                        return <SingleChoice key={((question.id).toString()).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={question.answers} handler={handler}/>;
-                    case "multiple_choice":
-                        return <MultipleChoice key={(question.id).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={question.answers} handler={handler}/>;
-                    case "open_ended":
-                        return <OpenEndedQuestion key={(question.id).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={[]} handler={handler}/>;
-                    default:
-                        return null;
-                }
-            })}
-        </>
-    );
-}
-
 function App() {
     const [answers, setAnswers] = useState<FinalResult[]>([]);
     const [currentStep, setCurrentStep] = useState(0);
     const [contentData, setContentData] = useState(test_data);
+
+    const QuestionList = ({step, handler}: {step: number, handler: (questionId: string, answer: FormDataEntryValue[]) => void}) => {
+        const questions = test_data.steps[step].questions;
+        return (
+            <>
+                {questions.map((question: Question) => {
+                    switch (question.questionType) {
+                        case "single_choice":
+                            return <SingleChoice key={((question.id).toString()).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={question.answers} handler={handler}/>;
+                        case "multiple_choice":
+                            return <MultipleChoice key={(question.id).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={question.answers} handler={handler}/>;
+                        case "open_ended":
+                            return <OpenEndedQuestion key={(question.id).toString()} questionId={(question.id).toString()} question={question.questionText} answerList={[]} handler={handler}/>;
+                        default:
+                            return null;
+                    }
+                })}
+            </>
+        );
+    }
 
     useEffect(() => {
         console.log(answers);
@@ -38,8 +38,8 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetchContent();
-            // setContentData(data);
-            console.log(data);
+            setContentData(data[0]);
+            console.log(data[0]);
         };
         fetchData();
     }, []);
