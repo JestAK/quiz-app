@@ -1,7 +1,7 @@
 import React from "react";
 import {QuestionProps} from "../types";
 
-export const MultipleChoice = ({questionId, question, answers} : QuestionProps) => {
+export const MultipleChoice = ({questionId, question, answerList, handler} : QuestionProps) => {
 
 
     return (
@@ -15,9 +15,9 @@ export const MultipleChoice = ({questionId, question, answers} : QuestionProps) 
                     answerIds: formData.getAll("question"),
                 };
 
-                console.log(formValues);
+                handler(formValues.questionId, formValues.answerIds);
             }}>
-                {answers.map((answer) => (
+                {answerList.map((answer) => (
                     <div key={answer.id} className="mb-2">
                         <input
                             type="checkbox"

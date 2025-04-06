@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {QuestionProps} from "../types";
 
-export const SingleChoice = ({questionId, question, answers} : QuestionProps) => {
+export const SingleChoice = ({questionId, question, answerList, handler} : QuestionProps) => {
+    // console.log(questionId, question, answerList);
 
     return (
         <div className="single-question-container border-2 p-5 mb-2">
@@ -10,13 +11,13 @@ export const SingleChoice = ({questionId, question, answers} : QuestionProps) =>
                 const formData = new FormData(e.currentTarget);
 
                 const formValues = {
-                    questionId: questionId,
+                    questionId: questionId.toString(),
                     answerIds: formData.getAll("question"),
                 };
 
-                console.log(formValues);
+                handler(formValues.questionId, formValues.answerIds);
             }}>
-                {answers.map((answer) => (
+                {answerList.map((answer) => (
                     <div key={answer.id} className="mb-2">
                         <input
                             type="radio"

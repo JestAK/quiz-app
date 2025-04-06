@@ -1,7 +1,7 @@
 import React from "react";
 import {QuestionProps} from "../types";
 
-export const OpenEndedQuestion = ({questionId, question, answers} : QuestionProps) => {
+export const OpenEndedQuestion = ({questionId, question, answerList, handler} : QuestionProps) => {
 
     return (
         <div className="single-question-container border-2 p-5 mb-2">
@@ -11,13 +11,16 @@ export const OpenEndedQuestion = ({questionId, question, answers} : QuestionProp
 
                 const formValues = {
                     questionId: questionId,
-                    answerIds: formData.getAll("question"),
+                    answer: formData.getAll("question"),
                 };
 
-                console.log(formValues);
+                handler(formValues.questionId, formValues.answer);
             }}>
                 <div key={1} className="mb-2">
-                    <textarea className="w-full border-2 p-2" placeholder="Enter your answer"></textarea>
+                    <textarea className="w-full border-2 p-2"
+                              placeholder="Enter your answer"
+                              name="question"
+                    ></textarea>
                 </div>
             </form>
         </div>

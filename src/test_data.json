@@ -7,22 +7,37 @@
           "id": "q1",
           "questionText": "What is your favorite color?",
           "questionType": "single_choice",
-          "answers": ["Red", "Blue", "Green", "Yellow"]
+          "answers": [
+            { "id": "1", "text": "Red" },
+            { "id": "2", "text": "Blue" },
+            { "id": "3", "text": "Green" },
+            { "id": "4", "text": "Yellow" }
+          ]
         },
         {
           "id": "q2",
           "questionText": "Which programming language do you prefer?",
           "questionType": "multiple_choice",
-          "answers": ["JavaScript", "Python", "Java", "C++"]
+          "answers": [
+            { "id": "1", "text": "JavaScript" },
+            { "id": "2", "text": "Python" },
+            { "id": "3", "text": "Java" },
+            { "id": "4", "text": "C++" }
+          ]
         },
         {
           "id": "q3",
           "questionText": "What is your favorite fruit?",
           "questionType": "single_choice",
-          "answers": ["Apple", "Banana", "Orange", "Grapes"]
+          "answers": [
+            { "id": "1", "text": "Apple" },
+            { "id": "2", "text": "Banana" },
+            { "id": "3", "text": "Orange" },
+            { "id": "4", "text": "Grapes" }
+          ]
         }
       ],
-      "questionOrder": ["q1", "q2", "q3"]
+      "questionOrder": ["q2", "q3", "q1"]
     },
     {
       "id": "step-2",
@@ -31,25 +46,42 @@
           "id": "q4",
           "questionText": "How satisfied are you with the product?",
           "questionType": "single_choice",
-          "answers": ["1", "2", "3", "4", "5"]
+          "answers": [
+            { "id": "1", "text": "1" },
+            { "id": "2", "text": "2" },
+            { "id": "3", "text": "3" },
+            { "id": "4", "text": "4" },
+            { "id": "5", "text": "5" }
+          ]
         },
         {
           "id": "q5",
           "questionText": "Do you like our service?",
           "questionType": "single_choice",
-          "answers": ["Yes", "No"]
+          "answers": [
+            { "id": "1", "text": "Yes" },
+            { "id": "2", "text": "No" }
+          ]
         },
         {
           "id": "q6",
           "questionText": "Would you recommend this to a friend?",
           "questionType": "single_choice",
-          "answers": ["Yes", "No"]
+          "answers": [
+            { "id": "1", "text": "Yes" },
+            { "id": "2", "text": "No" }
+          ]
         },
         {
           "id": "q7",
           "questionText": "How often do you use our product?",
           "questionType": "multiple_choice",
-          "answers": ["Daily", "Weekly", "Monthly", "Rarely"]
+          "answers": [
+            { "id": "1", "text": "Daily" },
+            { "id": "2", "text": "Weekly" },
+            { "id": "3", "text": "Monthly" },
+            { "id": "4", "text": "Rarely" }
+          ]
         }
       ],
       "questionOrder": ["q4", "q5", "q6", "q7"]
@@ -61,13 +93,24 @@
           "id": "q8",
           "questionText": "What is your age range?",
           "questionType": "single_choice",
-          "answers": ["Under 18", "18-24", "25-34", "35-44", "45+"]
+          "answers": [
+            { "id": "1", "text": "Under 18" },
+            { "id": "2", "text": "18-24" },
+            { "id": "3", "text": "25-34" },
+            { "id": "4", "text": "35-44" },
+            { "id": "5", "text": "45+" }
+          ]
         },
         {
           "id": "q9",
           "questionText": "What is your preferred mode of communication?",
           "questionType": "multiple_choice",
-          "answers": ["Email", "Phone", "Text", "In-person"]
+          "answers": [
+            { "id": "1", "text": "Email" },
+            { "id": "2", "text": "Phone" },
+            { "id": "3", "text": "Text" },
+            { "id": "4", "text": "In-person" }
+          ]
         },
         {
           "id": "q10",
