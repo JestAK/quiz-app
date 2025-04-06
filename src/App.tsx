@@ -14,7 +14,7 @@ function App() {
     const [isCompleted, setIsCompleted] = useState(false);  // Додамо змінну для відображення результатів
 
     const QuestionList = ({ step, handler }: { step: number, handler: (questionId: string, answer: FormDataEntryValue[]) => void }) => {
-        const questions = test_data.steps[step].questions;
+        const questions = contentData.steps[step].questions;
         return (
             <>
                 {questions.map((question: Question) => {
@@ -53,10 +53,8 @@ function App() {
         answersRef.current = newAnswers;
     };
 
-    // Перевірка, чи це останній крок
     const isLastStep = currentStep === contentData.steps.length - 1;
 
-    // Клік на кнопку "Send"
     const handleSend = () => {
         setIsCompleted(true);
     };
@@ -66,8 +64,8 @@ function App() {
             {!isCompleted ? (
                 <div className="app-container w-[80%] max-w-[1000px] min-h-dvh justify-self-center border-4 p-5">
                     <p>Step {currentStep + 1}/{contentData.steps.length}</p>
-                    <div className="flex justify-between border-3 mb-5">
-                        <h1 className="text-5xl content-center">Step {currentStep + 1}</h1>
+                    <div className="flex justify-between border-3 mb-5 flex-wrap">
+                        <h1 className="text-5xl content-center mb-3">Step {currentStep + 1}</h1>
                         <div className="place-content-center">
                             <button
                                 className="p-4 border-2 rounded-l-xl"
