@@ -115,7 +115,7 @@ function App() {
     return (
         <>
             {!isCompleted ? (
-                <div className="app-container w-[80%] max-w-[1000px] min-h-dvh justify-self-center border-4 p-5">
+                <div className="app-container w-[80%] max-w-[1000px] min-h-dvh justify-self-center border-2 p-5 my-5 rounded-2xl shadow-lg">
                     <p>Step {currentStep + 1}/{contentData.steps.length}</p>
                     <div className="flex justify-between border-3 mb-5 flex-wrap">
                         <h1 className="text-5xl content-center mb-3">Step {currentStep + 1}</h1>
