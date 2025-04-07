@@ -11,10 +11,12 @@ function App() {
     const answersRef = useRef<FinalResult[]>([]);
     const [currentStep, setCurrentStep] = useState(0);
     const [contentData, setContentData] = useState(test_data);
-    const [isCompleted, setIsCompleted] = useState(false);  // Додамо змінну для відображення результатів
+    const [isCompleted, setIsCompleted] = useState(false);
+    const [score, setScore] = useState(0);
 
     const QuestionList = ({ step, handler }: { step: number, handler: (questionId: string, answer: FormDataEntryValue[]) => void }) => {
         const questions = contentData.steps[step].questions;
+        // console.log(questions);
         return (
             <>
                 {questions.map((question: Question) => {
@@ -37,7 +39,7 @@ function App() {
         const fetchData = async () => {
             const data = await fetchContent();
             setContentData(data[0]);
-            console.log(data[0]);
+            console.log("FETCH:", data);
         };
         fetchData();
     }, []);
@@ -48,12 +50,53 @@ function App() {
         if (index !== -1) {
             newAnswers[index].answer = answer;
         } else {
-            newAnswers.push({ questionId, answer });
+            newAnswers.push({ questionId, answer});
         }
         answersRef.current = newAnswers;
     };
 
     const isLastStep = currentStep === contentData.steps.length - 1;
+
+    const checkAnswer = ({ questionId, answer }: FinalResult) => {
+        const question = contentData.steps[currentStep].questions.find((q: any) => q.id === questionId);
+
+        if (question) {
+            if (!question.rightAnswer) {
+                return true;
+            }
+
+            const answersArray: string[] = Array.isArray(answer) ? answer.map(ans => String(ans)) : [String(answer)];
+
+            const isCorrect =
+                question.rightAnswer.every((ans: string) => answersArray.includes(ans)) &&
+                answersArray.every((ans: string) => question.rightAnswer.includes(ans));
+
+            return !!isCorrect;
+        }
+    }
+
+    const countTotalQuestions = (steps: any[]) => {
+        let totalQuestions = 0;
+
+        steps.forEach((step) => {
+            totalQuestions += step.questions.length;
+        });
+
+        return totalQuestions;
+    };
+
+    const countScore = () => {
+        let correctAnswers = 0;
+
+        answersRef.current.forEach((answer) => {
+            const isCorrect = checkAnswer(answer);
+            if (isCorrect) {
+                correctAnswers++;
+            }
+        })
+
+        setScore(parseFloat((correctAnswers/countTotalQuestions(contentData.steps) * 100).toFixed(2)));
+    };
 
     const handleSend = () => {
         setIsCompleted(true);
@@ -78,11 +121,13 @@ function App() {
                                 &lt; Prev
                             </button>
 
-                            {/* Відображення кнопки Send або Next */}
                             {isLastStep ? (
                                 <button
                                     className="p-4 border-2 rounded-r-xl"
-                                    onClick={handleSend}
+                                    onClick={() => {
+                                        countScore();
+                                        handleSend();
+                                    }}
                                 >
                                     Send
                                 </button>
@@ -103,7 +148,7 @@ function App() {
                     <QuestionList step={currentStep} handler={handleAnswerChange} />
                 </div>
             ) : (
-                <ResultPage resultData={answersRef.current} questionData={contentData}/>
+                <ResultPage resultData={answersRef.current} questionData={contentData} score={score}/>
             )}
         </>
     );

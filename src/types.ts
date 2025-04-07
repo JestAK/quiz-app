@@ -15,6 +15,7 @@ export interface Question {
     questionText: string;
     questionType: string;
     answers: Answer[];
+    rightAnswer: string[];
 }
 
 export interface Step {

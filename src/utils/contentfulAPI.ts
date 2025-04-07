@@ -12,6 +12,8 @@ export const fetchContent = async () => {
             include: 3,
         });
 
+        console.log("Response from Contentful:", response);
+
         const transformedData: any = response.items.map((item: any) => {
             const steps = item.fields.steps.map((step: any) => {
                 return step.fields
@@ -31,16 +33,19 @@ export const fetchContent = async () => {
                                     text: answer,
                                 }
                             }),
+                            rightAnswer: question.fields.rightAnswer,
                         }
                     }),
                     questionOrder: step.questionOrder,
                 }
             })
+
             return {
                 steps: result,
             };
         })
 
+        console.log("Transformed Data:", transformedData);
         return transformedData;
 
     } catch (error) {

@@ -12,7 +12,8 @@
             { "id": 2, "text": "Blue" },
             { "id": 3, "text": "Green" },
             { "id": 4, "text": "Yellow" }
-          ]
+          ],
+          "rightAnswer": ["Green"]
         },
         {
           "id": "q2",
@@ -23,7 +24,8 @@
             { "id": "2", "text": "Python" },
             { "id": "3", "text": "Java" },
             { "id": "4", "text": "C++" }
-          ]
+          ],
+          "rightAnswer": ["JavaScript", "Python"]
         },
         {
           "id": "q3",
@@ -34,7 +36,8 @@
             { "id": "2", "text": "Banana" },
             { "id": "3", "text": "Orange" },
             { "id": "4", "text": "Grapes" }
-          ]
+          ],
+          "rightAnswer": ["Apple"]
         }
       ],
       "questionOrder": ["q2", "q3", "q1"]
@@ -52,7 +55,8 @@
             { "id": "3", "text": "3" },
             { "id": "4", "text": "4" },
             { "id": "5", "text": "5" }
-          ]
+          ],
+          "rightAnswer": ["5"]
         },
         {
           "id": "q5",
@@ -61,7 +65,8 @@
           "answers": [
             { "id": "1", "text": "Yes" },
             { "id": "2", "text": "No" }
-          ]
+          ],
+          "rightAnswer": ["Yes"]
         },
         {
           "id": "q6",
@@ -70,7 +75,8 @@
           "answers": [
             { "id": "1", "text": "Yes" },
             { "id": "2", "text": "No" }
-          ]
+          ],
+          "rightAnswer": ["Yes"]
         },
         {
           "id": "q7",
@@ -81,7 +87,8 @@
             { "id": "2", "text": "Weekly" },
             { "id": "3", "text": "Monthly" },
             { "id": "4", "text": "Rarely" }
-          ]
+          ],
+          "rightAnswer": ["Daily", "Weekly"]
         }
       ],
       "questionOrder": ["q4", "q5", "q6", "q7"]
@@ -99,7 +106,8 @@
             { "id": "3", "text": "25-34" },
             { "id": "4", "text": "35-44" },
             { "id": "5", "text": "45+" }
-          ]
+          ],
+          "rightAnswer": ["18-24"]
         },
         {
           "id": "q9",
@@ -110,13 +118,15 @@
             { "id": "2", "text": "Phone" },
             { "id": "3", "text": "Text" },
             { "id": "4", "text": "In-person" }
-          ]
+          ],
+          "rightAnswer": ["Email", "Text"]
         },
         {
           "id": "q10",
           "questionText": "Do you have any suggestions for improvement?",
           "questionType": "open_ended",
-          "answers": []
+          "answers": [],
+          "rightAnswer": []
         }
       ],
       "questionOrder": ["q8", "q9", "q10"]
