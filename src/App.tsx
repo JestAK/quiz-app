@@ -16,10 +16,13 @@ function App() {
 
     const QuestionList = ({ step, handler }: { step: number, handler: (questionId: string, answer: FormDataEntryValue[]) => void }) => {
         const questions = contentData.steps[step].questions;
-        // console.log(questions);
+        const questionOrder = contentData.steps[step].questionOrder;
         return (
             <>
-                {questions.map((question: Question) => {
+                {questionOrder.map((questionId: string) => {
+                    const question = questions.find((q: Question) => q.id === questionId);
+                    if (!question) return null;
+
                     switch (question.questionType) {
                         case "single_choice":
                             return <SingleChoice key={question.id.toString()} questionId={question.id.toString()} question={question.questionText} answerList={question.answers} handler={handler} />;
@@ -39,7 +42,6 @@ function App() {
         const fetchData = async () => {
             const data = await fetchContent();
             setContentData(data[0]);
-            console.log("FETCH:", data);
         };
         fetchData();
     }, []);

@@ -3,7 +3,6 @@ import {ResultComponent} from "./ResultComponent";
 
 export const ResultPage = ({resultData, questionData, score} : any) => {
     const getQuestionText = (questionId: string) => {
-        console.log(questionData)
         for (const step of questionData.steps) {
             const question = step.questions.find((q: any) => q.id === questionId);
             if (question) {
