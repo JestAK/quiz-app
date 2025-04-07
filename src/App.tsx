@@ -42,6 +42,7 @@ function App() {
         const fetchData = async () => {
             const data = await fetchContent();
             setContentData(data[0]);
+            console.log("Fetched data:", data[0]);
         };
         fetchData();
     }, []);
@@ -60,7 +61,11 @@ function App() {
     const isLastStep = currentStep === contentData.steps.length - 1;
 
     const checkAnswer = ({ questionId, answer }: FinalResult) => {
-        const question = contentData.steps[currentStep].questions.find((q: any) => q.id === questionId);
+        const questions = contentData.steps.map((step: any) => step.questions).flat();
+        console.log(`Questions ${JSON.stringify(questions)}`);
+        const question = questions.find((q: any) => q.id === questionId);
+        console.log(`Checking answer for question ID: ${questionId}, Answer: ${answer} rightAnswer: ${question?.rightAnswer}`);
+        console.log(`Question: ${JSON.stringify(question)}`);
 
         if (question) {
             if (!question.rightAnswer) {
@@ -75,6 +80,8 @@ function App() {
 
             return !!isCorrect;
         }
+
+        return false;
     }
 
     const countTotalQuestions = (steps: any[]) => {
@@ -92,6 +99,7 @@ function App() {
 
         answersRef.current.forEach((answer) => {
             const isCorrect = checkAnswer(answer);
+            console.log(`Question ID: ${answer.questionId}, Answer: ${answer.answer}, Correct: ${isCorrect}`);
             if (isCorrect) {
                 correctAnswers++;
             }
